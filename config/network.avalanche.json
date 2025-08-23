@@ -1,0 +1,22 @@
+{
+  "chainId": 43114,
+  "name": "Avalanche C-Chain",
+  "rpc": "https://api.avax.network/ext/bc/C/rpc",
+  "explorer": "https://snowtrace.io",
+  "nativeCurrency": {
+    "name": "AVAX",
+    "symbol": "AVAX",
+    "decimals": 18
+  },
+  "testnet": {
+    "chainId": 43113,
+    "name": "Avalanche Fuji Testnet",
+    "rpc": "https://api.avax-test.network/ext/bc/C/rpc",
+    "explorer": "https://testnet.snowtrace.io"
+  },
+  "gas": {
+    "default": 300000,
+    "max": 1000000,
+    "maxPriorityFeePerGas": "2000000000"
+  }
+}

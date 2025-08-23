@@ -1,0 +1,162 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL") ?? "file:./dev.db"
+}
+
+model Run {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Run metadata
+  runType     String   // 'monitor', 'simulate', 'backtest', 'execute'
+  status      String   // 'pending', 'running', 'completed', 'failed'
+  description String?
+  
+  // Performance metrics
+  startTime   DateTime
+  endTime     DateTime?
+  duration    Int?     // in milliseconds
+  
+  // Configuration
+  config      String?  // JSON string of run configuration
+  
+  // Results
+  opportunitiesCount Int @default(0)
+  actionsCount       Int @default(0)
+  executedCount      Int @default(0)
+  failedCount        Int @default(0)
+  
+  // Relationships
+  actions     Action[]
+  
+  @@index([runType, status])
+  @@index([createdAt])
+}
+
+model Action {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Action details
+  runId       String
+  type        String   // 'swap', 'lp_add', 'lp_remove', 'supply', 'withdraw', 'borrow', 'repay', 'deposit', 'withdraw_vault'
+  protocol    String   // 'traderjoe', 'benqi', 'yieldyak'
+  
+  // Token information
+  fromToken   String
+  toToken     String
+  amount      String   // BigInt as string
+  amountUsd   Float
+  
+  // Transaction details
+  txHash      String?
+  gasUsed     String?  // BigInt as string
+  gasCost     String?  // BigInt as string
+  
+  // Status and results
+  status      String   // 'pending', 'executed', 'failed', 'rejected'
+  error       String?
+  
+  // Safety checks
+  safetyChecks String? // JSON string of safety check results
+  
+  // Performance metrics
+  executionTime DateTime?
+  dryRunResult  String? // JSON string of dry run results
+  
+  // Relationships
+  run         Run      @relation(fields: [runId], references: [id])
+  
+  @@index([runId])
+  @@index([protocol, type])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Opportunity {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  
+  // Opportunity details
+  protocol    String
+  tokenAddress String
+  tokenSymbol String
+  apr         Float
+  tvl         Float?
+  
+  // Risk metrics
+  riskScore   Float
+  volatility  Float?
+  ilRisk      Float?
+  
+  // Gas estimation
+  estGasUsd   Float
+  
+  // Metadata
+  source      String   // 'onchain', 'api', 'calculated'
+  
+  @@index([protocol, tokenAddress])
+  @@index([apr])
+  @@index([riskScore])
+}
+
+model Position {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Position details
+  walletAddress String
+  protocol      String
+  tokenAddress  String
+  tokenSymbol   String
+  
+  // Balance information
+  balance      String   // BigInt as string
+  balanceUsd   Float
+  apr          Float?
+  
+  // Health metrics (for lending protocols)
+  healthFactor Float?
+  
+  // Metadata
+  lastUpdated  DateTime @default(now())
+  
+  @@unique([walletAddress, protocol, tokenAddress])
+  @@index([walletAddress])
+  @@index([protocol])
+  @@index([balanceUsd])
+}
+
+model Performance {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  
+  // Performance metrics
+  date        DateTime
+  totalValue  Float
+  dailyReturn Float
+  weeklyReturn Float?
+  monthlyReturn Float?
+  
+  // Protocol breakdown
+  traderjoeValue Float @default(0)
+  benqiValue     Float @default(0)
+  yieldyakValue  Float @default(0)
+  
+  // Risk metrics
+  portfolioRiskScore Float
+  diversificationScore Float?
+  
+  @@unique([date])
+  @@index([date])
+}

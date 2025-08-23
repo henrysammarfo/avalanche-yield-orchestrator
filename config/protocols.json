@@ -1,0 +1,39 @@
+{
+  "traderjoe": {
+    "name": "Trader Joe",
+    "router": "0x60aE616a2155Ee3d9A6854Ba5c7b92Bd7bC7F6d1",
+    "factory": "0x9Ad6C38BE94206cA50bb0d90783181662f0Cfa10",
+    "wavax": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+    "usdc": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+    "usdt": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+    "defaultSlippageBps": 50,
+    "maxSlippageBps": 500,
+    "defaultDeadlineMinutes": 20,
+    "maxNotionalPerTx": 250,
+    "dailyCap": 1000
+  },
+  "benqi": {
+    "name": "Benqi",
+    "comptroller": "0x486Af39519B4Dc9a7fCcd318217352830E8AD9b4A",
+    "qiToken": "0x5C0401e81Bc07Ca70fAD469b451682c0d747Ef1c",
+    "qiAvax": "0x5C0401e81Bc07Ca70fAD469b451682c0d747Ef1c",
+    "qiUsdc": "0xBEb5d47A3f720Ec0a390d04b4d41ED7d9688bB08",
+    "qiUsdt": "0x8E4E0257A4759557B0c027800B902Fd2045395C8",
+    "minHealthFactor": 1.3,
+    "maxHealthFactor": 2.0,
+    "maxNotionalPerTx": 250,
+    "dailyCap": 1000
+  },
+  "yieldyak": {
+    "name": "Yield Yak",
+    "registry": "0x0000000000000000000000000000000000000000",
+    "vaults": {
+      "avax": "0x0000000000000000000000000000000000000000",
+      "usdc": "0x0000000000000000000000000000000000000000",
+      "usdt": "0x0000000000000000000000000000000000000000"
+    },
+    "api": "https://api.yieldyak.com",
+    "maxNotionalPerTx": 250,
+    "dailyCap": 1000
+  }
+}
