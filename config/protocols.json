@@ -1,11 +1,11 @@
 {
   "traderjoe": {
     "name": "Trader Joe",
-    "router": "0x60aE616a2155Ee3d9A6854Ba5c7b92Bd7bC7F6d1",
-    "factory": "0x9Ad6C38BE94206cA50bb0d90783181662f0Cfa10",
-    "wavax": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
-    "usdc": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
-    "usdt": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+    "router": "0x60ae616a2155ee3d9a6854ba5c7b92bd7bc7f6d1",
+    "factory": "0x9ad6c38be94206ca50bb0d90783181662f0cfa10",
+    "wavax": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
+    "usdc": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+    "usdt": "0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7",
     "defaultSlippageBps": 50,
     "maxSlippageBps": 500,
     "defaultDeadlineMinutes": 20,
