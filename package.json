@@ -13,9 +13,9 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "format": "prettier --write src/**/*.ts",
     "start": "node dist/index.js",
-    "backtest": "ts-node --esm src/scripts/backtest.ts",
-    "simulate": "ts-node --esm src/scripts/simulate.ts",
-    "monitor": "ts-node --esm src/scripts/monitor.ts"
+    "backtest": "node dist/scripts/backtest.js",
+    "simulate": "node dist/scripts/simulate.js",
+    "monitor": "node dist/scripts/monitor.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
   "dependencies": {
     "@prisma/client": "^5.0.0",
     "axios": "^1.11.0",
+    "csv-parse": "^5.5.0",
     "dotenv": "^17.2.1",
     "langchain": "^0.3.31",
     "openai": "^5.15.0",

@@ -21,6 +21,8 @@
     "qiUsdt": "0x8E4E0257A4759557B0c027800B902Fd2045395C8",
     "minHealthFactor": 1.3,
     "maxHealthFactor": 2.0,
+    "defaultSlippageBps": 0,
+    "maxSlippageBps": 100,
     "maxNotionalPerTx": 250,
     "dailyCap": 1000
   },
@@ -33,6 +35,8 @@
       "usdt": "0x0000000000000000000000000000000000000000"
     },
     "api": "https://api.yieldyak.com",
+    "defaultSlippageBps": 0,
+    "maxSlippageBps": 100,
     "maxNotionalPerTx": 250,
     "dailyCap": 1000
   }

@@ -1,3 +1,5 @@
+import { ethers } from 'ethers';
+
 export interface Opportunity {
   id: string;
   protocol: string;

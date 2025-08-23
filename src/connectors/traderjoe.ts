@@ -9,13 +9,14 @@ import {
   tokenToUsd,
   usdToToken
 } from '../utils/helpers.js';
-import protocolsConfig from '../../config/protocols.json' assert { type: 'json' };
+import { loadProtocolsConfig, loadAbi } from '../utils/config.js';
 
+const protocolsConfig = loadProtocolsConfig();
 const TRADER_JOE_CONFIG = protocolsConfig.traderjoe;
 
-// Import ABIs
-import routerAbi from './ABIs/traderjoeRouter.json' assert { type: 'json' };
-import erc20Abi from './ABIs/erc20.json' assert { type: 'json' };
+// Load ABIs
+const routerAbi = loadAbi('traderjoeRouter');
+const erc20Abi = loadAbi('erc20');
 
 export class TraderJoeConnector implements Connector {
   public provider: ethers.JsonRpcProvider;
@@ -278,7 +279,11 @@ export class TraderJoeConnector implements Connector {
       }
 
       const tx = await signer.sendTransaction(txRequest);
-      return await tx.wait();
+      const receipt = await tx.wait();
+      if (!receipt) {
+        throw new Error('Transaction failed - no receipt received');
+      }
+      return receipt;
     } catch (error) {
       throw new Error(`Failed to send Trader Joe action: ${error}`);
     }
