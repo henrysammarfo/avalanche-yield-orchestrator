@@ -27,9 +27,9 @@ pnpm run testnet
 
 ### **2. Practice Your Pitch** ⏳
 - **Timing**: Practice to hit exactly 5 minutes
-- **Key Points**: Memorize the 6 main talking points
+- **Key Points**: Memorize the 7 main talking points (including CLI-first strategy)
 - **Demo Flow**: Practice the live demo sequence
-- [ ] **Questions**: Prepare answers to anticipated questions
+- **Questions**: Prepare answers to anticipated questions
 
 ### **3. Prepare Your Environment** ⏳
 - **Laptop**: Ensure it's charged and ready
@@ -53,6 +53,7 @@ pnpm run testnet
 - [ ] **Problem (30s)**: DeFi yield optimization challenges
 - [ ] **Solution (45s)**: AI-powered agent with safety features
 - [ ] **Live Demo (2m)**: Show real testnet connection
+- [ ] **User Experience (30s)**: CLI-first strategy, frontend roadmap
 - [ ] **Market (30s)**: $50B+ opportunity
 - [ ] **Business (30s)**: Subscription + performance fees
 - [ ] **Ask (15s)**: $500K seed, strategic partners
@@ -87,6 +88,11 @@ pnpm run testnet
 - "Clear problem-solution fit"
 - "Realistic business model"
 - "Strong competitive advantages"
+
+### **5. "CLI-First Strategy"** 🖥️
+- "Faster to market"
+- "Developer adoption"
+- "Frontend coming next"
 
 ---
 
@@ -135,6 +141,12 @@ pnpm run testnet
 - Viable business model
 - Strong competitive advantages
 
+### **4. Strategic Thinking** 🧠
+- CLI-first approach shows business acumen
+- Clear roadmap for user experience
+- Understanding of developer adoption
+- Progressive enhancement strategy
+
 ---
 
 ## 📱 **Follow-up Strategy**
@@ -142,7 +154,7 @@ pnpm run testnet
 ### **Immediate (After Pitch)**
 - Share GitHub repository link
 - Offer live demo access
-- Provide contact information
+- Provide technical documentation
 - Answer any questions
 
 ### **Short Term (Next 24 hours)**
@@ -168,14 +180,20 @@ pnpm run testnet
 4. ✅ **Safety Features**: Multiple protection layers
 5. ✅ **Market Ready**: Clear business model
 6. ✅ **Technical Excellence**: Modern stack, well-architected
+7. ✅ **Strategic Thinking**: CLI-first approach shows business acumen
 
 ### **Key Message**
 **"We're not building the future - we're building it now, and it's already working."**
+
+### **CLI-First Strategy Message**
+**"We built the CLI first because it gets us to market faster and validates our core technology. Users can start today, and the beautiful web interface is coming next."**
 
 ---
 
 ## 🚀 **Final Reminder**
 
 **Remember**: You have what most teams don't - a working, live system that actually connects to real blockchain networks. This is a HUGE advantage. Use it!
+
+**CLI-First is Strategic**: This approach shows you understand business strategy, not just technical implementation. VCs will appreciate this thinking.
 
 **Good luck with your pitch! You've got this! 🎯**

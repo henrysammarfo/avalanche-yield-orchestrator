@@ -41,20 +41,26 @@ AYO is a production-ready, AI-powered yield optimization platform that intellige
 - **Production-ready code** - TypeScript, tested, documented
 - **Safety first** - demo mode default, comprehensive validation
 
-### **4. Market Opportunity (30 seconds)**
+### **4. User Experience Strategy (30 seconds)**
+- **CLI-first approach** - faster to market, developer adoption
+- **Users can start today** - immediate access through command line
+- **Frontend roadmap** - web dashboard and mobile app coming next
+- **API-first design** - enables integrations and automation
+
+### **5. Market Opportunity (30 seconds)**
 - **$50B+ DeFi market** growing rapidly
 - **$2B+ Avalanche ecosystem** with strong growth
 - **Target users**: DeFi users, yield farmers, portfolio managers
 - **Competitive advantage**: AI + safety + multi-protocol
 
-### **5. Business Model (30 seconds)**
+### **6. Business Model (30 seconds)**
 - **Subscription tiers**: Free → Pro ($29/month) → Enterprise
 - **Performance fees**: 10% of additional yield generated
 - **Protocol partnerships**: Revenue sharing and referral fees
 - **Year 1 target**: $810K ARR with 3,000 users
 
-### **6. Investment Ask (15 seconds)**
-- **Seed round**: $500K for team expansion and growth
+### **7. Investment Ask (15 seconds)**
+- **Seed round**: $500K for team expansion and frontend development
 - **Strategic partners** with DeFi/blockchain expertise
 - **Technical mentorship** and network access
 - **Ready for mainnet launch** in next 30 days
@@ -105,6 +111,12 @@ pnpm run testnet
 ### **Q: Why Avalanche specifically?**
 **A**: Avalanche has excellent DeFi protocols, fast finality, low fees, and strong developer support. It's the perfect ecosystem for yield optimization.
 
+### **Q: How do users interact with your system?**
+**A**: We use a CLI-first strategy - users can start immediately through command line tools. This approach gets us to market faster and appeals to DeFi power users. We're building a web dashboard and mobile app next.
+
+### **Q: Isn't CLI too technical for regular users?**
+**A**: CLI-first is strategic - it gets us to market faster and validates our core technology. We're already building the web interface, but users can start using our system today through simple commands.
+
 ---
 
 ## 🎯 **Pitch Structure (5 minutes total)**
@@ -114,6 +126,7 @@ pnpm run testnet
 | **Problem** | 30s | DeFi yield optimization is hard, risky, expensive |
 | **Solution** | 45s | AI-powered agent with safety features |
 | **Demo** | 2m | Live testnet with real blockchain data |
+| **User Experience** | 30s | CLI-first strategy, frontend roadmap |
 | **Market** | 30s | $50B+ market, strong growth potential |
 | **Business** | 30s | Subscription + performance fees model |
 | **Ask** | 15s | $500K seed, strategic partners needed |
@@ -142,6 +155,11 @@ pnpm run testnet
 - "Realistic business model"
 - "Strong competitive advantages"
 
+### **5. Explain CLI-First Strategy**
+- "Faster to market"
+- "Developer adoption"
+- "Frontend coming next"
+
 ---
 
 ## 📱 **Contact & Follow-up**
@@ -163,3 +181,5 @@ pnpm run testnet
 **Remember**: You have a working product that's actually live on testnet. This is a huge advantage over teams with just mockups or prototypes. Emphasize the real, working nature of your system!
 
 **Key Message**: "We're not building the future - we're building it now, and it's already working."
+
+**CLI-First Strategy**: "We built the CLI first because it gets us to market faster and validates our core technology. Users can start today, and the beautiful web interface is coming next."
