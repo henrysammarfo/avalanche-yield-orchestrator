@@ -19,6 +19,16 @@
 - ✅ **Public GitHub repo** with comprehensive documentation
 - ✅ **Bonus: AI learning** and market trend auto-adjustment
 
+## 🎬 **Demo Video**
+
+**Watch our system in action!** 📹
+
+[![Demo Video](https://img.shields.io/badge/Demo-Video-red?style=for-the-badge&logo=youtube)](https://youtu.be/cBU5ZdMI_6w)
+
+**Full Demo Video**: [https://youtu.be/cBU5ZdMI_6w](https://youtu.be/cBU5ZdMI_6w)
+
+---
+
 ## 🚀 **Live Demo - Testnet Deployment**
 
 **The system is LIVE and operational on Avalanche Fuji testnet!**
@@ -98,6 +108,15 @@ pnpm run testnet
 ```
 
 ## 🎮 **Usage Examples**
+
+### **📹 Watch Demo Video First**
+**See our system in action before diving into the code!**
+
+[![Demo Video](https://img.shields.io/badge/Watch-Demo-red?style=for-the-badge&logo=youtube)](https://youtu.be/cBU5ZdMI_6w)
+
+**Demo Video**: [https://youtu.be/cBU5ZdMI_6w](https://youtu.be/cBU5ZdMI_6w)
+
+---
 
 ### **Live Testnet Demo** (Recommended)
 ```bash
