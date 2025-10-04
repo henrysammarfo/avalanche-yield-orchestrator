@@ -36,6 +36,13 @@ const config: HardhatUserConfig = {
       url: configVariable("SEPOLIA_RPC_URL"),
       accounts: [configVariable("SEPOLIA_PRIVATE_KEY")],
     },
+    fuji: {
+      type: "http",
+      chainType: "l1",
+      url: "https://api.avax-test.network/ext/bc/C/rpc",
+      accounts: [configVariable("PRIVATE_KEY", { defaultValue: "0x0000000000000000000000000000000000000000000000000000000000000000" })],
+      chainId: 43113,
+    },
   },
 };
 

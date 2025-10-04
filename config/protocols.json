@@ -1,24 +1,26 @@
 {
   "traderjoe": {
-    "name": "Trader Joe",
-    "router": "0x60ae616a2155ee3d9a6854ba5c7b92bd7bc7f6d1",
-    "factory": "0x9ad6c38be94206ca50bb0d90783181662f0cfa10",
-    "wavax": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
-    "usdc": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
-    "usdt": "0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7",
+    "name": "Trader Joe (LFJ V2.2)",
+    "router": "0x18556DA13313f3532c54711497A8FedAC273220E",
+    "factory": "0xb43120c4745967fa9b93E79C149E66B0f2D6Fe0c",
+    "quoter": "0x9A550a522BBaDFB69019b0432800Ed17855A51C3",
+    "wavax": "0xd00ae08403B9bbb9124bB305C09058E32C39A48c",
+    "usdc": "0x5425890298aed601595a70AB815c96711a31Bc65",
+    "link": "0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846",
     "defaultSlippageBps": 50,
     "maxSlippageBps": 500,
     "defaultDeadlineMinutes": 20,
     "maxNotionalPerTx": 250,
     "dailyCap": 1000
   },
-  "benqi": {
-    "name": "Benqi",
-    "comptroller": "0x486Af39519B4Dc9a7fCcd318217352830E8AD9b4A",
-    "qiToken": "0x5C0401e81Bc07Ca70fAD469b451682c0d747Ef1c",
-    "qiAvax": "0x5C0401e81Bc07Ca70fAD469b451682c0d747Ef1c",
-    "qiUsdc": "0xBEb5d47A3f720Ec0a390d04b4d41ED7d9688bB08",
-    "qiUsdt": "0x8E4E0257A4759557B0c027800B902Fd2045395C8",
+  "aave": {
+    "name": "Aave V3",
+    "pool": "0xccEa5C65f6d4F465B71501418b88FBe4e7071283",
+    "poolAddressesProvider": "0xD65e225d05762B901A52243d928d55f7435D3CC1",
+    "aaveOracle": "0x0000000000000000000000000000000000000000",
+    "wavax": "0xd00ae08403B9bbb9124bB305C09058E32C39A48c",
+    "usdc": "0x5425890298aed601595a70AB815c96711a31Bc65",
+    "link": "0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846",
     "minHealthFactor": 1.3,
     "maxHealthFactor": 2.0,
     "defaultSlippageBps": 0,
@@ -26,17 +28,16 @@
     "maxNotionalPerTx": 250,
     "dailyCap": 1000
   },
-  "yieldyak": {
-    "name": "Yield Yak",
-    "registry": "0x0000000000000000000000000000000000000000",
-    "vaults": {
-      "avax": "0x0000000000000000000000000000000000000000",
-      "usdc": "0x0000000000000000000000000000000000000000",
-      "usdt": "0x0000000000000000000000000000000000000000"
-    },
-    "api": "https://api.yieldyak.com",
-    "defaultSlippageBps": 0,
-    "maxSlippageBps": 100,
+  "pangolin": {
+    "name": "Pangolin DEX",
+    "router": "0x0c45FB63001b56a21e29c7dcc1727bfDA273a368",
+    "factory": "0x4Fe4D8b01A56706Bc6CaD26E8C59D0C7169976b3",
+    "wavax": "0xd00ae08403B9bbb9124bB305C09058E32C39A48c",
+    "usdc": "0x5425890298aed601595a70AB815c96711a31Bc65",
+    "link": "0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846",
+    "defaultSlippageBps": 50,
+    "maxSlippageBps": 500,
+    "defaultDeadlineMinutes": 20,
     "maxNotionalPerTx": 250,
     "dailyCap": 1000
   }

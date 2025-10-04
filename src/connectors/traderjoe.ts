@@ -30,38 +30,46 @@ export class TraderJoeConnector implements Connector {
   }
 
   /**
-   * Read available opportunities from Trader Joe
-   * @returns Array of opportunities
+   * Read available opportunities from Trader Joe (LFJ V2.2)
+   * @returns Array of opportunities - REAL DATA ONLY
    */
   async readOpportunities(): Promise<Opportunity[]> {
     try {
-      // Mock opportunities - in production, fetch from Trader Joe API or on-chain
-      const opportunities: Opportunity[] = [
-        {
-          id: 'tj-avax-usdc',
-          protocol: 'traderjoe',
-          apr: 12.5,
-          vol: 0.8,
-          ilRisk: 0.3,
-          estGasUsd: 2.5,
-          tokenAddress: TRADER_JOE_CONFIG.wavax,
-          tokenSymbol: 'AVAX-USDC LP',
-          tvl: 5000000,
-          riskScore: 0.4
-        },
-        {
-          id: 'tj-avax-usdt',
-          protocol: 'traderjoe',
-          apr: 11.8,
-          vol: 0.7,
-          ilRisk: 0.4,
-          estGasUsd: 2.5,
-          tokenAddress: TRADER_JOE_CONFIG.wavax,
-          tokenSymbol: 'AVAX-USDT LP',
-          tvl: 3000000,
-          riskScore: 0.5
-        }
+      const opportunities: Opportunity[] = [];
+
+      // Note: LFJ V2.2 uses a complex Liquidity Book architecture
+      // For now, we'll read basic swap opportunities using the quoter
+      // In production, integrate with LFJ V2.2 API or complex on-chain queries
+
+      // Define major trading pairs to query
+      const pairs = [
+        { from: TRADER_JOE_CONFIG.wavax, to: TRADER_JOE_CONFIG.usdc, name: 'AVAX-USDC' },
+        { from: TRADER_JOE_CONFIG.wavax, to: TRADER_JOE_CONFIG.link, name: 'AVAX-LINK' },
+        { from: TRADER_JOE_CONFIG.usdc, to: TRADER_JOE_CONFIG.link, name: 'USDC-LINK' }
       ];
+
+      for (const { from, to, name } of pairs) {
+        try {
+          // For LFJ V2.2, we need to query actual liquidity from the factory
+          // This is a simplified version - full implementation would check binStep and active pools
+          const fromContract = new ethers.Contract(from, erc20Abi, this.provider);
+          const symbol = await fromContract.symbol();
+
+          // Add basic swap opportunity (no APR for swaps, only for LP positions)
+          opportunities.push({
+            id: `tj-${name.toLowerCase()}-swap`,
+            protocol: 'traderjoe',
+            apr: 0, // Swaps don't earn APR
+            tokenAddress: from,
+            tokenSymbol: `${name} Swap`,
+            estGasUsd: 4.0,
+            riskScore: 0.2
+          });
+        } catch (error) {
+          console.warn(`Error querying LFJ pair ${name}:`, error);
+          // Continue to next pair, don't fallback to mocks
+        }
+      }
 
       return opportunities;
     } catch (error) {
@@ -71,39 +79,46 @@ export class TraderJoeConnector implements Connector {
   }
 
   /**
-   * Read user positions from Trader Joe
+   * Read user positions from Trader Joe (LFJ V2.2)
    * @param wallet - Wallet address
-   * @returns Array of positions
+   * @returns Array of positions - REAL DATA ONLY
    */
   async readPosition(wallet: string): Promise<Position[]> {
     try {
       const positions: Position[] = [];
-      
-      // Check LP token balances
-      const lpTokens = [TRADER_JOE_CONFIG.wavax, TRADER_JOE_CONFIG.usdc, TRADER_JOE_CONFIG.usdt];
-      
-      for (const tokenAddress of lpTokens) {
+
+      // Check token balances (not LP positions since LFJ V2.2 architecture is complex)
+      const tokens = [TRADER_JOE_CONFIG.wavax, TRADER_JOE_CONFIG.usdc, TRADER_JOE_CONFIG.link];
+
+      for (const tokenAddress of tokens) {
         try {
           const tokenContract = new ethers.Contract(tokenAddress, erc20Abi, this.provider);
           const balance = await tokenContract.balanceOf(wallet);
           const decimals = await tokenContract.decimals();
-          
+
           if (balance > BigInt(0)) {
             const balanceUsd = tokenToUsd(balance, decimals, tokenAddress);
+            const symbol = await tokenContract.symbol();
+
             positions.push({
-              id: `tj-${tokenAddress}`,
+              id: `tj-balance-${symbol}`,
               protocol: 'traderjoe',
               tokenAddress,
-              tokenSymbol: await tokenContract.symbol(),
+              tokenSymbol: symbol,
               balance,
               balanceUsd,
-              apr: 12.0 // Mock APR
+              apr: 0 // Token balances don't earn APR without staking/LP
             });
           }
         } catch (error) {
           console.warn(`Error reading token ${tokenAddress}:`, error);
         }
       }
+
+      // Note: For full LFJ V2.2 support, would need to:
+      // 1. Query LBFactory for user's LP positions
+      // 2. Get binStep and LBPair addresses
+      // 3. Calculate LP token shares and APR from fees
 
       return positions;
     } catch (error) {

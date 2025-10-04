@@ -24,8 +24,8 @@ async function main() {
     // Initialize testnet connector
     const connector = new TestnetConnector(testnetRpc);
     
-    // Test wallet address (you can replace this with a real testnet wallet)
-    const testWallet = '0x742d35cc6634c0532925a3b8d4c9db96c4b4d8b6'; // Sample address (lowercase)
+    // Test wallet address from .env
+    const testWallet = process.env.WALLET_ADDRESS || '0x687b98C98954C3d618540D56b1Ed5b9055D32A55';
     
     console.log(`👛 Test wallet: ${testWallet}\n`);
 

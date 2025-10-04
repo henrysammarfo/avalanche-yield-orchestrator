@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"https://testnet.snowtrace.io/token/0xd00ae08403b9bbb9124bb305c09058e32c39a48c\")",
+      "Bash(npm run build:*)",
+      "Bash(npm run testnet:*)",
+      "Bash(cat:*)",
+      "Bash(npm run monitor:*)",
+      "Bash(curl -s -X POST https://api.avax-test.network/ext/bc/C/rpc -H \"Content-Type: application/json\" -d '{\"\"\"\"jsonrpc\"\"\"\":\"\"\"\"2.0\"\"\"\",\"\"\"\"method\"\"\"\":\"\"\"\"eth_getBalance\"\"\"\",\"\"\"\"params\"\"\"\":[\"\"\"\"0x687b98C98954C3d618540D56b1Ed5b9055D32A55\"\"\"\",\"\"\"\"latest\"\"\"\"],\"\"\"\"id\"\"\"\":1}')",
+      "Bash(curl -s -X POST https://api.avax-test.network/ext/bc/C/rpc -H \"Content-Type: application/json\" -d '{\"\"\"\"jsonrpc\"\"\"\":\"\"\"\"2.0\"\"\"\",\"\"\"\"method\"\"\"\":\"\"\"\"eth_getTransactionCount\"\"\"\",\"\"\"\"params\"\"\"\":[\"\"\"\"0x687b98C98954C3d618540D56b1Ed5b9055D32A55\"\"\"\",\"\"\"\"latest\"\"\"\"],\"\"\"\"id\"\"\"\":1}')",
+      "Bash(node:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

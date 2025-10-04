@@ -2,8 +2,8 @@
 
 import { ethers } from 'ethers';
 import { TraderJoeConnector } from '../connectors/traderjoe.js';
-import { BenqiConnector } from '../connectors/benqi.js';
-import { YieldYakConnector } from '../connectors/yieldyak.js';
+import { AaveConnector } from '../connectors/aave.js';
+import { PangolinConnector } from '../connectors/pangolin.js';
 import { PlanAction } from '../types/index.js';
 
 /**
@@ -23,8 +23,8 @@ async function main() {
   // Initialize connectors
   const connectors = {
     traderjoe: new TraderJoeConnector(mockProvider),
-    benqi: new BenqiConnector(mockProvider),
-    yieldyak: new YieldYakConnector(mockProvider)
+    aave: new AaveConnector(mockProvider),
+    pangolin: new PangolinConnector(mockProvider)
   };
 
   try {
@@ -33,22 +33,22 @@ async function main() {
     // Get opportunities from all protocols
     const allOpportunities = await Promise.all([
       connectors.traderjoe.readOpportunities(),
-      connectors.benqi.readOpportunities(),
-      connectors.yieldyak.readOpportunities()
+      connectors.aave.readOpportunities(),
+      connectors.pangolin.readOpportunities()
     ]);
 
-    const [tjOpportunities, benqiOpportunities, yyOpportunities] = allOpportunities;
+    const [tjOpportunities, aaveOpportunities, pangolinOpportunities] = allOpportunities;
 
     // Find best opportunities for each protocol
     const bestTJ = tjOpportunities.reduce((best, opp) => opp.apr > best.apr ? opp : best);
-    const bestBenqi = benqiOpportunities.reduce((best, opp) => opp.apr > best.apr ? opp : best);
-    const bestYY = yyOpportunities.reduce((best, opp) => opp.apr > best.apr ? opp : best);
+    const bestAave = aaveOpportunities.reduce((best, opp) => opp.apr > best.apr ? opp : best);
+    const bestPangolin = pangolinOpportunities.reduce((best, opp) => opp.apr > best.apr ? opp : best);
 
     console.log('🎯 Best Opportunities Found:');
     console.log('-----------------------------');
     console.log(`  🦎 Trader Joe: ${bestTJ.tokenSymbol} - ${bestTJ.apr.toFixed(2)}% APR`);
-    console.log(`  🏦 Benqi: ${bestBenqi.tokenSymbol} - ${bestBenqi.apr.toFixed(2)}% APR`);
-    console.log(`  🐑 Yield Yak: ${bestYY.tokenSymbol} - ${bestYY.apr.toFixed(2)}% APR\n`);
+    console.log(`  🏦 Aave V3: ${bestAave.tokenSymbol} - ${bestAave.apr.toFixed(2)}% APR`);
+    console.log(`  🐧 Pangolin: ${bestPangolin.tokenSymbol} - ${bestPangolin.apr.toFixed(2)}% APR\n`);
 
     // Simulate action planning
     console.log('🔄 Simulating Action Plans...\n');
@@ -99,44 +99,44 @@ async function main() {
         deadline: Math.floor(Date.now() / 1000) + 1200,
         estimatedGas: 150000,
         estimatedGasUsd: 3.75,
-        riskScore: bestBenqi.riskScore
+        riskScore: bestAave.riskScore
       };
 
-      const benqiResult = await connectors.benqi.buildAction(benqiAction, walletAddress);
+      const aaveResult = await connectors.aave.buildAction(benqiAction, walletAddress);
       console.log(`  ✅ Supply Action Built Successfully`);
-      console.log(`     Gas Estimate: ${benqiResult.tx.gasLimit || '150,000'} wei`);
-      console.log(`     Target: ${benqiResult.tx.to}`);
-      console.log(`     Dry Run: ${benqiResult.dryRunResult ? 'Passed' : 'Not Available'}`);
+      console.log(`     Gas Estimate: ${aaveResult.tx.gasLimit || '150,000'} wei`);
+      console.log(`     Target: ${aaveResult.tx.to}`);
+      console.log(`     Dry Run: ${aaveResult.dryRunResult ? 'Passed' : 'Not Available'}`);
     } catch (error) {
       console.log(`  ❌ Supply Action Failed: ${error}`);
     }
     console.log('');
 
-    // Simulate Yield Yak deposit action
-    console.log('🐑 Yield Yak Action Plan:');
-    console.log('--------------------------');
+    // Simulate Pangolin LP action
+    console.log('🐧 Pangolin Action Plan:');
+    console.log('-------------------------');
     try {
-      const yyAction: PlanAction = {
-        type: 'deposit',
-        protocol: 'yieldyak',
-        fromToken: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7', // WAVAX
-        toToken: '0x5C0401e81Bc07Ca70fAD469b451682c0d747Ef1c', // Vault
+      const pangolinAction: PlanAction = {
+        type: 'lp_add',
+        protocol: 'pangolin',
+        fromToken: '0x1d308089a2d1ced3f1ce36b1fcaf815b07217be3', // WAVAX
+        toToken: '0xB6076C93701D6a07266c31066B298AeC6dd65c2d', // USDC
         amount: ethers.parseUnits('75', 18),
         amountUsd: 150,
-        slippageBps: 0,
+        slippageBps: 50,
         deadline: Math.floor(Date.now() / 1000) + 1200,
         estimatedGas: 120000,
         estimatedGasUsd: 3.0,
-        riskScore: bestYY.riskScore
+        riskScore: bestPangolin.riskScore
       };
 
-      const yyResult = await connectors.yieldyak.buildAction(yyAction, walletAddress);
-      console.log(`  ✅ Deposit Action Built Successfully`);
-      console.log(`     Gas Estimate: ${yyResult.tx.gasLimit || '120,000'} wei`);
-      console.log(`     Target: ${yyResult.tx.to}`);
-      console.log(`     Dry Run: ${yyResult.dryRunResult ? 'Passed' : 'Not Available'}`);
+      const pangolinResult = await connectors.pangolin.buildAction(pangolinAction, walletAddress);
+      console.log(`  ✅ Add Liquidity Action Built Successfully`);
+      console.log(`     Gas Estimate: ${pangolinResult.tx.gasLimit || '120,000'} wei`);
+      console.log(`     Target: ${pangolinResult.tx.to}`);
+      console.log(`     Dry Run: ${pangolinResult.dryRunResult ? 'Passed' : 'Not Available'}`);
     } catch (error) {
-      console.log(`  ❌ Deposit Action Failed: ${error}`);
+      console.log(`  ❌ Add Liquidity Action Failed: ${error}`);
     }
     console.log('');
 

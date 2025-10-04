@@ -1,9 +1,7 @@
-
-
 import { ethers } from 'ethers';
 import { TraderJoeConnector } from '../connectors/traderjoe.js';
-import { BenqiConnector } from '../connectors/benqi.js';
-import { YieldYakConnector } from '../connectors/yieldyak.js';
+import { AaveConnector } from '../connectors/aave.js';
+import { PangolinConnector } from '../connectors/pangolin.js';
 
 /**
  * Monitor script - demonstrates monitoring opportunities across all protocols
@@ -22,8 +20,8 @@ async function main() {
   // Initialize connectors
   const connectors = {
     traderjoe: new TraderJoeConnector(mockProvider),
-    benqi: new BenqiConnector(mockProvider),
-    yieldyak: new YieldYakConnector(mockProvider)
+    aave: new AaveConnector(mockProvider),
+    pangolin: new PangolinConnector(mockProvider)
   };
 
   try {
@@ -32,11 +30,11 @@ async function main() {
 
     const allOpportunities = await Promise.all([
       connectors.traderjoe.readOpportunities(),
-      connectors.benqi.readOpportunities(),
-      connectors.yieldyak.readOpportunities()
+      connectors.aave.readOpportunities(),
+      connectors.pangolin.readOpportunities()
     ]);
 
-    const [tjOpportunities, benqiOpportunities, yyOpportunities] = allOpportunities;
+    const [tjOpportunities, aaveOpportunities, pangolinOpportunities] = allOpportunities;
 
     // Display Trader Joe opportunities
     console.log('🦎 Trader Joe Opportunities:');
@@ -46,18 +44,18 @@ async function main() {
     });
     console.log('');
 
-    // Display Benqi opportunities
-    console.log('🏦 Benqi Lending Opportunities:');
-    console.log('--------------------------------');
-    benqiOpportunities.forEach(opp => {
+    // Display Aave opportunities
+    console.log('🏦 Aave V3 Lending Opportunities:');
+    console.log('----------------------------------');
+    aaveOpportunities.forEach(opp => {
       console.log(`  • ${opp.tokenSymbol}: ${opp.apr.toFixed(2)}% APR, Risk: ${opp.riskScore.toFixed(1)}`);
     });
     console.log('');
 
-    // Display Yield Yak opportunities
-    console.log('🐑 Yield Yak Vault Opportunities:');
-    console.log('----------------------------------');
-    yyOpportunities.forEach(opp => {
+    // Display Pangolin opportunities
+    console.log('🐧 Pangolin DEX Opportunities:');
+    console.log('------------------------------');
+    pangolinOpportunities.forEach(opp => {
       console.log(`  • ${opp.tokenSymbol}: ${opp.apr.toFixed(2)}% APR, Risk: ${opp.riskScore.toFixed(1)}`);
     });
     console.log('');
@@ -65,7 +63,7 @@ async function main() {
     // Summary
     const totalOpportunities = allOpportunities.reduce((sum, opps) => sum + opps.length, 0);
     const avgRisk = allOpportunities.flat().reduce((sum, opp) => sum + opp.riskScore, 0) / totalOpportunities;
-    const bestOpportunity = allOpportunities.flat().reduce((best, opp) => 
+    const bestOpportunity = allOpportunities.flat().reduce((best, opp) =>
       opp.apr > best.apr ? opp : best
     );
 
@@ -76,8 +74,8 @@ async function main() {
     console.log(`  Best APR: ${bestOpportunity.apr.toFixed(2)}% (${bestOpportunity.tokenSymbol})`);
     console.log('');
 
-    console.log('✅ Monitoring complete! Use "pnpm run simulate" to generate action plans.');
-    console.log('   Use "pnpm run backtest" to test strategies with historical data.');
+    console.log('✅ Monitoring complete! Use "npm run simulate" to generate action plans.');
+    console.log('   Use "npm run backtest" to test strategies with historical data.');
 
   } catch (error) {
     console.error('❌ Error during monitoring:', error);
